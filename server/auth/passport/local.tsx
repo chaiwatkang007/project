@@ -1,6 +1,8 @@
 import Users from "../../model/users.model"
 import passport from "passport"
 import { Strategy } from "passport-local"
+import bcrypt from 'bcrypt'
+
 
 interface CallbackType {
     (error: any, user: any, message: any): void
@@ -21,13 +23,22 @@ const Authenticate = async (
             message: "ไม่พบผู้ใช้งานนี้ในระบบ",
           })
         }
-        if(users?.password === password) {
-            return done(undefined, { users }, null)
+
+        const passwordMatch = await bcrypt.compare(password, users.password);
+        if (passwordMatch) {
+          return done(undefined, { users }, null)
         } else {
-            return done(undefined, false, {
-                message: "รหัสผ่านไม่ถูกต้อง"
-            })
+          return done(undefined, false, {
+            message: "รหัสผ่านไม่ถูกต้อง"
+        });
         }
+        // if(users?.password === password) {
+        //   return done(undefined, { users }, null)
+        // } else {
+        //     return done(undefined, false, {
+        //         message: "รหัสผ่านไม่ถูกต้อง"
+        //     })
+        // }
       })
       .catch((err: any) => {
         return done(err, false, {

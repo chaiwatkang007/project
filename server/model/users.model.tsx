@@ -20,6 +20,10 @@ class Users extends Model {
     role: string
     @Column(DataType.DATE)
     createdDate: Date
+    @Column({ type: DataType.TEXT })
+    email: string
+    @Column({ type: DataType.TEXT })
+    verify: string
 }
 
 export default Users

@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import { Button} from "antd";
+import { Button, message} from "antd";
 import axios from "axios";
 import Router from "next/router";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function register() {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+ 
+
   const _handleRegister = async () => {
     try {
-      if (!username || !password) {
-        setErrorMessage("Please enter a username and password");
+      if (!username || !password || !email) {
+        setErrorMessage("Please enter a email username and password");
         return;
       }
 
@@ -23,9 +27,10 @@ export default function register() {
           "Content-Type": "application/json",
         },
         data: JSON.stringify({
-          username: username,
-          password: password,
-          role: "user",
+          "email": email,
+          "username": username,
+          "password": password,
+          "role": "user",
         }),
       });
       if (result?.data?.result?.id) {
@@ -35,7 +40,7 @@ export default function register() {
     } catch (errorMessage: any) {
       if (axios.isAxiosError(errorMessage)) {
         if (errorMessage.response) {
-          setErrorMessage("Invalid username or password");
+          setErrorMessage("มีผู้ใช้งานนี้ในระบบแล้ว");
         }
       }
     }
@@ -43,6 +48,7 @@ export default function register() {
 
   return (
     <main className="bg">
+      <title>Sign up to SeniorProject</title>
       <div className="register">
         <form>
           <div className="container">
@@ -51,6 +57,17 @@ export default function register() {
                 <h1>SIGN UP</h1>
               </b>
             </label>
+            <label htmlFor="uname">
+              <b>Email</b>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Email"
+              name="em"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label htmlFor="uname">
               <b>Username</b>
             </label>
@@ -73,6 +90,7 @@ export default function register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+          
             <Button
               className="buttonlogin"
               type="primary"

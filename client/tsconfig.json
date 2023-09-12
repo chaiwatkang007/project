@@ -17,7 +17,8 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "jsx": "preserve",
-      "suppressImplicitAnyIndexErrors": true,
+      
+      "suppressImplicitAnyIndexErrors": false,
       "noImplicitAny": false,
       "incremental": true,
       "allowSyntheticDefaultImports": true,
