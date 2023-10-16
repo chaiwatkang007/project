@@ -63,8 +63,14 @@ export default function login() {
         }),
       });
       if (result?.data?.result?.id) {
+        console.log(result?.data?.result?.id)
         console.log("Login successful!");
-        Router.push("/page2");
+        await axios.post('/api/log/addlog', {
+          event_happening: `${username} signed in`,
+        });
+        Router.push(`/template`);
+        localStorage.setItem("usernamelogin",username);
+        
       }
     } catch (errorMessage: any) {
       if (axios.isAxiosError(errorMessage)) {

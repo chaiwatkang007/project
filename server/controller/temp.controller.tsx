@@ -47,7 +47,7 @@ const tempController = {
       const user = await Temp.findOne({
         where: {
           day: args.day,
-          time: args.time,
+          // time: args.time,
         },
       });
       if (!user) {

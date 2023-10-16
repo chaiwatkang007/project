@@ -38,6 +38,9 @@ export default function resetpassowrd() {
     if (result?.data) {
       console.log("Reset password successful!");
       setErrorMessage("Reset password successful!");
+      await axios.post('/api/log/addlog', {
+        event_happening: `${email} Reset password`,
+      });
       Router.push("/login");
     }
   } catch (errorMessage: any) {

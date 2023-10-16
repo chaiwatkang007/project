@@ -1,5 +1,10 @@
 import { v4 } from "uuid";
-import { CreateUser, Sendmail, UpdateUser } from "../interface/users.interface";
+import {
+  Adminlog,
+  CreateUser,
+  Sendmail,
+  UpdateUser,
+} from "../interface/users.interface";
 import Users from "../model/users.model";
 import { IId, IQuerys } from "../interface/common.interface";
 import { Op } from "sequelize";
@@ -42,22 +47,22 @@ const usersController = {
     return newUser;
   },
   update: async (args: UpdateUser) => {
-    let user = await Users.findOne({where: {email: args.email}});
+    let user = await Users.findOne({ where: { email: args.email } });
     if (!user) throw Error("ไม่พบผู้ใช้งานนี้มีอยู่ในระบบ");
-    
+
     //เช็ครหัสผ่านซ้ำไหม
-    const oldpassword = await bcrypt.compare(args.password,user.password)
+    const oldpassword = await bcrypt.compare(args.password, user.password);
     if (oldpassword) {
       throw Error("รหัสผ่านซ้ำกับอันเดิม กรุณาเปลี่ยนใหม่อีกครั้ง");
     }
-    
-    
+
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(args.password, saltRounds);
 
     let newUser = await user.update({
       args,
-    password:hashedPassword});
+      password: hashedPassword,
+    });
     return newUser;
   },
   delete: async (args: IId) => {
@@ -77,11 +82,11 @@ const usersController = {
     }
 
     if (user) {
-        await user.update({
-            verify: args.verify,
-        })
+      await user.update({
+        verify: args.verify,
+      });
     }
-    
+
     // ส่งอีเมล
     const transporter = nodemailer.createTransport({
       service: "Gmail",
@@ -90,7 +95,7 @@ const usersController = {
         pass: "Kang07112542",
       },
     });
-    
+
     const mailOptions = {
       from: "", // อีเมลของผู้ส่ง
       to: user.email, // ใช้อีเมลจากผู้ใช้ที่พบในฐานข้อมูล
@@ -101,12 +106,31 @@ const usersController = {
     try {
       await transporter.sendMail(mailOptions);
       return "ส่งรหัสยืนยันไปยังอีเมลแล้ว";
-
     } catch (error) {
       console.error("Error sending email:", error);
       throw new Error("เกิดข้อผิดพลาดในการส่งอีเมล");
     }
-},
+  },
+  adminlog: async (args: Adminlog) => {
+    let user = await Users.findOne({ where: { username: args.username } });
+    if (!user) throw Error("ไม่พบผู้ใช้งานนี้มีอยู่ในระบบ");
+
+    const passwordMatch = await bcrypt.compare(args.password, user.password);
+    if (passwordMatch) {
+      return user
+    }
+    if (!passwordMatch) {
+      throw new Error("รหัสผ่านไม่ถูกต้อง");
+    }
+
+    // if(users?.password === password) {
+    //   return done(undefined, { users }, null)
+    // } else {
+    //     return done(undefined, false, {
+    //         message: "รหัสผ่านไม่ถูกต้อง"
+    //     })
+    // }
+  },
 };
 
 export default usersController;

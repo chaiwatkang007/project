@@ -35,6 +35,9 @@ export default function register() {
       });
       if (result?.data?.result?.id) {
         console.log("Sign Up successful!");
+        await axios.post('/api/log/addlog', {
+          event_happening: `${username} new user signed up `,
+        });
         Router.push("/login");
       }
     } catch (errorMessage: any) {
