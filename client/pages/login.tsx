@@ -3,6 +3,7 @@ import { Button, Col, Row } from "antd";
 import axios from "axios";
 import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
+import { request } from "express";
 
 export default function login() {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -66,11 +67,10 @@ export default function login() {
         console.log(result?.data?.result?.id)
         console.log("Login successful!");
         await axios.post('/api/log/addlog', {
-          event_happening: `${username} signed in`,
+          event_happening: `${username} signed in `,
         });
         Router.push(`/template`);
         localStorage.setItem("usernamelogin",username);
-        
       }
     } catch (errorMessage: any) {
       if (axios.isAxiosError(errorMessage)) {

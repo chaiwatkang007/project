@@ -25,6 +25,27 @@ function Admin() {
   const [namefour, setNamefour] = useState([]);
   const [datalog, setDatalog] = useState([]);
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [currentPage, setCurrentPage] = useState(1); // หน้าปัจจุบัน
+  const [itemsPerPage] = useState(10); // จำนวนรายการต่อหน้า
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = datalog.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(datalog.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const renderPageNumbers = pageNumbers.map((number) => {
+    return (
+      <li key={number}>
+        <a href="#" onClick={() => setCurrentPage(number)}>
+          {number}
+        </a>
+      </li>
+    );
+  });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -502,7 +523,7 @@ function Admin() {
                     cover={
                       <img
                         alt="example"
-                        src="https://scontent.fbkk12-4.fna.fbcdn.net/v/t39.30808-6/337012394_233257582512653_7465760359736163477_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFiFR4lYxAqvgr1SIgE-T3lGVR1-lSre7YZVHX6VKt7toPHUnooaDqsW3AkmpvHZsOTby-t4hCQTUUu_YPlSOw8&_nc_ohc=BmF4InkGXBsAX-Q08L2&_nc_ht=scontent.fbkk12-4.fna&oh=00_AfCjPzzaWAnD986p4KEqxtcmsBKxjMVrWefmX74svW4f1Q&oe=652A8437"
+                        src="https://scontent.fbkk12-4.fna.fbcdn.net/v/t39.30808-6/337012394_233257582512653_7465760359736163477_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Knmag1WTd2wAX-yHnh3&_nc_ht=scontent.fbkk12-4.fna&oh=00_AfBY8djt-lRWweG9nQLJvPeEJmpe3X6X95lAA_3FNSVe3A&oe=65326D37"
                       />
                     }
                   >
@@ -514,7 +535,7 @@ function Admin() {
                     cover={
                       <img
                         alt="example"
-                        src="https://scontent.fbkk13-3.fna.fbcdn.net/v/t39.30808-6/371034662_1974338542924136_330610339788569331_n.jpg?stp=cp6_dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeH8F7YGK7GEVYpvj4bXsUc-Z6T_Eqk7KidnpP8SqTsqJ2J5016RpDM5GyR2Jm2WpY1bYrJDkmTX_mfTdoAhMPm7&_nc_ohc=A1t6ddbbt-gAX8dlmYC&_nc_ht=scontent.fbkk13-3.fna&oh=00_AfD-ARvWNIvSix78AXb3OR1WaHATYYsQ7ruXOHZ_LipFhQ&oe=652A26CB"
+                        src="https://scontent.fbkk13-3.fna.fbcdn.net/v/t39.30808-6/371034662_1974338542924136_330610339788569331_n.jpg?stp=cp6_dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeH8F7YGK7GEVYpvj4bXsUc-Z6T_Eqk7KidnpP8SqTsqJ2J5016RpDM5GyR2Jm2WpY1bYrJDkmTX_mfTdoAhMPm7&_nc_ohc=QjbmvtzAQLoAX8XVP76&_nc_ht=scontent.fbkk13-3.fna&oh=00_AfCp2B-hDI1DYFv-nfyVims47Z_N1OsWjNe7cQ8SdkP7Cw&oe=65320FCB"
                       />
                     }
                   >
@@ -526,7 +547,7 @@ function Admin() {
                     cover={
                       <img
                         alt="example"
-                        src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/362951835_2042172992795649_5082259832039992477_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeEFvoo_pOqv-6aJVGEECNLTHJNBcLzvQp8ck0FwvO9Cn8ccjZAvc-gOiNE0zszwm_UJ8YjHNchSUy1f1NjyDAFT&_nc_ohc=haSNvO80RDEAX_wzEZE&_nc_ht=scontent.fbkk12-1.fna&oh=00_AfA6HctZw3l_Xp5hfA4AX7O46JmLl4LvCcZS_MmNBqBiuw&oe=652A3871"
+                        src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/362951835_2042172992795649_5082259832039992477_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEFvoo_pOqv-6aJVGEECNLTHJNBcLzvQp8ck0FwvO9Cn8ccjZAvc-gOiNE0zszwm_UJ8YjHNchSUy1f1NjyDAFT&_nc_ohc=A-_nM3Mzr9EAX-JPcHH&_nc_ht=scontent.fbkk12-1.fna&oh=00_AfBzE8fSA3CMdgsiJEkmrb20tiL9b36aVKUNT-g_K1GfBg&oe=65322171"
                       />
                     }
                   >
@@ -604,16 +625,18 @@ function Admin() {
                         <th>Event</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {datalog.map((logEntry, index) => (
-                        <tr key={index}>
-                          <td>{logEntry.day}</td>
-                          <td>{logEntry.time}</td>
-                          <td>{logEntry.event_happening}</td>
-                        </tr>
-                      ))}
-                    </tbody>
+                    {currentItems.map((logEntry, index) => (
+                      <tr key={index}>
+                        <td>{logEntry.day}</td>
+                        <td>{logEntry.time}</td>
+                        <td>{logEntry.event_happening}</td>
+                      </tr>
+                    ))}
+  
                   </table>
+                  <div className="pagination">
+                      <ul className="page-numbers">{renderPageNumbers}</ul>
+                    </div>
                 </div>
               )}
             </>

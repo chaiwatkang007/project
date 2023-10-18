@@ -92,7 +92,41 @@
   margin-right: 10px;
 }
 
+.admin-log-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
+.pagination {
+  margin-top: 20px; /* ปรับค่าตามที่คุณต้องการ */
+}
+
+.page-numbers {
+  list-style: none;
+  display: flex;
+  
+  gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+  padding: 0;
+  justify-content: center;
+}
+
+.page-numbers li {
+  display: inline;
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #e4e4e4; /* สีพื้นหลังของปุ่ม */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.page-numbers li.active {
+  background-color: #ff0000; /* เปลี่ยนสีพื้นหลังเป็นสีแดง */
+  color: #fff; /* เปลี่ยนสีตัวอักษรให้เป็นขาว */
+}
 
 /*............................................*/
 
