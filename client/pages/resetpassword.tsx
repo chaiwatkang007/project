@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "antd";
 import axios from "axios";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 
 
 export default function Resetpassowrd() {
-  const { email } = Router.query;
+  const router = useRouter();
+  const { email } = router.query;
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [newpassword, setNewPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -41,7 +42,7 @@ export default function Resetpassowrd() {
       await axios.post('/api/log/addlog', {
         event_happening: `${email} Reset password`,
       });
-      Router.push("/login");
+      router.push("/login");
     }
   } catch (errorMessage: any) {
     if (axios.isAxiosError(errorMessage)) {
