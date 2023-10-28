@@ -11,6 +11,12 @@ import Image from "next/image";
 
 const { Meta } = Card;
 
+interface LogEntry {
+  day : string;
+  time: string;
+  event_happening: string;
+}
+
 function Admin() {
   const usernamelogin = localStorage.getItem("usernamelogin");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -627,7 +633,7 @@ function Admin() {
                         <th>Event</th>
                       </tr>
                     </thead>
-                    {currentItems.map((logEntry, index) => (
+                    {currentItems.map((logEntry:LogEntry, index) => (
                       <tr key={index}>
                         <td>{logEntry.day}</td>
                         <td>{logEntry.time}</td>
