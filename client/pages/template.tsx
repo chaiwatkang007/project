@@ -18,7 +18,7 @@ interface LogEntry {
 }
 
 function Admin() {
-  const usernamelogin = localStorage.getItem("usernamelogin");
+  const [usernamelogin, setUsernamelogin] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("2023-09-03"); // Default date
   const [selectedTime, setSelectedTime] = useState("00:00"); // Default time
@@ -56,7 +56,6 @@ function Admin() {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -132,6 +131,13 @@ function Admin() {
   };
 
   useEffect(() => {
+
+    if (typeof window !== 'undefined') {
+      const storedUsername = localStorage.getItem('usernamelogin');
+      if(storedUsername) {
+        setUsernamelogin(storedUsername);
+      }
+    }
     // Fetch temperature and humidity data from the server when the date and time change
     const fetchData = async () => {
       try {
