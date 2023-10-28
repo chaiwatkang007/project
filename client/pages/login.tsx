@@ -116,7 +116,7 @@ export default function Login() {
             />
             <Col className="b">
               <Link href="/forgotpassword">
-                <a>forgot password</a>
+                forgot password
               </Link>
             </Col>
             <div className="cc">

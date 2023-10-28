@@ -6,6 +6,8 @@ import { Button, Card, Col, Progress, Row, Statistic } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
+import Link from "next/link";
+import Image from "next/image";
 
 const { Meta } = Card;
 
@@ -545,10 +547,10 @@ function Admin() {
                     hoverable
                     style={{ width: 300 }}
                     cover={
-                      <img
-                        alt="example"
-                        src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/362951835_2042172992795649_5082259832039992477_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEFvoo_pOqv-6aJVGEECNLTHJNBcLzvQp8ck0FwvO9Cn8ccjZAvc-gOiNE0zszwm_UJ8YjHNchSUy1f1NjyDAFT&_nc_ohc=A-_nM3Mzr9EAX-JPcHH&_nc_ht=scontent.fbkk12-1.fna&oh=00_AfBzE8fSA3CMdgsiJEkmrb20tiL9b36aVKUNT-g_K1GfBg&oe=65322171"
-                      />
+                        <img
+                          src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/362951835_2042172992795649_5082259832039992477_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=gQ89jgl_HC0AX_KPrvg&_nc_ht=scontent.fbkk12-1.fna&oh=00_AfBTHtXVh5mZkmdNQtbwJGkJXmmEJN4GPxh7pVYz72qbdA&oe=6541F371"
+                          alt="example"
+                        />
                     }
                   >
                     <Meta title="BENCHAPORN PHANMI" description="CLOUD" />
@@ -594,7 +596,7 @@ function Admin() {
                         onChange={(e) => setPassword(e.target.value)}
                       />
                       <Col className="b">
-                        <a href="/forgotpassword">forgot password</a>
+                        <Link href="/forgorpassword">forgot password</Link>
                       </Col>
                       <div className="cc">
                         <ReCAPTCHA
@@ -632,11 +634,10 @@ function Admin() {
                         <td>{logEntry.event_happening}</td>
                       </tr>
                     ))}
-  
                   </table>
                   <div className="pagination">
-                      <ul className="page-numbers">{renderPageNumbers}</ul>
-                    </div>
+                    <ul className="page-numbers">{renderPageNumbers}</ul>
+                  </div>
                 </div>
               )}
             </>
