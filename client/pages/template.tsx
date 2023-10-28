@@ -25,10 +25,6 @@ function Admin() {
   const [xAxisCategories, setXAxisCategories] = useState();
   const [countuser, setUser] = useState([]);
   const [selectedMenu, setSelectedMenu] = useState("DASHBOARD");
-  const [nameone, setNameone] = useState([]);
-  const [nametwo, setNametwo] = useState([]);
-  const [namethree, setNamethree] = useState([]);
-  const [namefour, setNamefour] = useState([]);
   const [datalog, setDatalog] = useState([]);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [currentPage, setCurrentPage] = useState(1); // หน้าปัจจุบัน
@@ -203,10 +199,7 @@ function Admin() {
         const namefour = data.result.rows[3].username;
         console.log(countuser);
 
-        setNameone(nameone);
-        setNametwo(nametwo);
-        setNamethree(namethree);
-        setNamefour(namefour);
+
         setUser(countuser);
       } catch (error) {
         console.error("Error fetching data:", error);
