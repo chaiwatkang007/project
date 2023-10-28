@@ -4,10 +4,8 @@ import Highcharts from "highcharts";
 import axios from "axios";
 import { Button, Card, Col, Progress, Row, Statistic } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
-import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
-import Image from "next/image";
 
 const { Meta } = Card;
 
