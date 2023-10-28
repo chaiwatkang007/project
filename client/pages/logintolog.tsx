@@ -3,8 +3,9 @@ import { Button, Col, Row } from "antd";
 import axios from "axios";
 import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
+import Link from "next/link";
 
-export default function login() {
+export default function Logintolog() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -66,7 +67,7 @@ export default function login() {
         Router.push("/template");
       }
       if (result.data.result.role === "user") {
-        setErrorMessage("คุณไม่มีสิทธิ์เข้าถึง")
+        setErrorMessage("คุณไม่มีสิทธิ์เข้าถึง");
         return;
         // console.log("Login successful!");
         // console.log(result.data);
@@ -122,7 +123,9 @@ export default function login() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Col className="b">
-              <a href="/forgotpassword">forgot password</a>
+              <Link href="/forgotpassword">
+                <a>forgot password</a>
+              </Link>
             </Col>
             <div className="cc">
               <ReCAPTCHA

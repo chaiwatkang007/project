@@ -4,7 +4,7 @@ import axios from "axios";
 import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
 
-export default function register() {
+export default function Register() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");

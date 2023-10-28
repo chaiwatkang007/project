@@ -5,7 +5,7 @@ import Router from "next/router";
 
 
 
-export default function resetpassowrd() {
+export default function Resetpassowrd() {
   const { email } = Router.query;
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [newpassword, setNewPassword] = useState<string>("");

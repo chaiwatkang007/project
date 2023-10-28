@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, message} from "antd";
 import axios from "axios";
 
-export default function deletes() {
+export default function Deletes() {
 
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [username, setUername] = useState<string>("");

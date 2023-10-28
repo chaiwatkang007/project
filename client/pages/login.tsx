@@ -3,9 +3,9 @@ import { Button, Col, Row } from "antd";
 import axios from "axios";
 import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
-import { request } from "express";
+import Link from "next/link";
 
-export default function login() {
+export default function Login() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -50,7 +50,6 @@ export default function login() {
 
       const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse);
 
-
       const result = await axios({
         method: "post",
         maxBodyLength: Infinity,
@@ -64,13 +63,13 @@ export default function login() {
         }),
       });
       if (result?.data?.result?.id) {
-        console.log(result?.data?.result?.id)
+        console.log(result?.data?.result?.id);
         console.log("Login successful!");
-        await axios.post('/api/log/addlog', {
+        await axios.post("/api/log/addlog", {
           event_happening: `${username} signed in `,
         });
         Router.push(`/template`);
-        localStorage.setItem("usernamelogin",username);
+        localStorage.setItem("usernamelogin", username);
       }
     } catch (errorMessage: any) {
       if (axios.isAxiosError(errorMessage)) {
@@ -88,7 +87,7 @@ export default function login() {
       <div className="beforelogin">
         <form>
           <div className="container">
-          <label className="signin" htmlFor="signin">
+            <label className="signin" htmlFor="signin">
               <b>
                 <h1>SIGN IN</h1>
               </b>
@@ -116,7 +115,9 @@ export default function login() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Col className="b">
-              <a href="/forgotpassword">forgot password</a>
+              <Link href="/forgotpassword">
+                <a>forgot password</a>
+              </Link>
             </Col>
             <div className="cc">
               <ReCAPTCHA
