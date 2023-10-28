@@ -12,9 +12,9 @@ export default function Forgotpassword() {
   const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
 
   //ReCapcha
-  const handleCaptchaVerify = (response: string) => {
+  const handleCaptchaVerify = (token: string | null) => {
     setIsCaptchaVerified(true);
-    setRecaptchaResponse(response);
+    setRecaptchaResponse(token || "");
   };
 
   const verifyRecaptcha = async (recaptchaResponse: string) => {

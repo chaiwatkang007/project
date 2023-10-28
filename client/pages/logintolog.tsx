@@ -12,9 +12,9 @@ export default function Logintolog() {
   const [recaptchaResponse, setRecaptchaResponse] = useState<string>("");
   const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
 
-  const handleCaptchaVerify = (response: string) => {
+  const handleCaptchaVerify = (token: string | null) => {
     setIsCaptchaVerified(true);
-    setRecaptchaResponse(response);
+    setRecaptchaResponse(token || "");
   };
 
   const verifyRecaptcha = async (recaptchaResponse: string) => {
