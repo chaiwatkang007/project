@@ -34,7 +34,7 @@ function Admin() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = datalog.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = [];
+  const pageNumbers:number[] = [];
   for (let i = 1; i <= Math.ceil(datalog.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -57,9 +57,9 @@ function Admin() {
   const [recaptchaResponse, setRecaptchaResponse] = useState<string>("");
   const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
 
-  const handleCaptchaVerify = (response: string) => {
+  const handleCaptchaVerify = (token: string | null) => {
     setIsCaptchaVerified(true);
-    setRecaptchaResponse(response);
+    setRecaptchaResponse(token || "");
   };
 
   const verifyRecaptcha = async (recaptchaResponse: string) => {
