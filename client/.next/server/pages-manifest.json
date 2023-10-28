@@ -1,15 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/BarChart": "pages/BarChart.html",
-  "/delete": "pages/delete.html",
-  "/": "pages/index.html",
-  "/forgotpassword": "pages/forgotpassword.html",
-  "/login": "pages/login.html",
-  "/logintolog": "pages/logintolog.html",
-  "/register": "pages/register.html",
-  "/resetpassword": "pages/resetpassword.html",
-  "/template": "pages/template.html",
   "/_error": "pages/_error.js",
-  "/404": "pages/404.html"
+  "/_document": "pages/_document.js",
+  "/template": "pages/template.js"
 }
