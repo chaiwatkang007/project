@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Input, Row  } from "antd";
 import axios from "axios";
 import Router from "next/router";
 import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -11,6 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState<string>("");
   const [recaptchaResponse, setRecaptchaResponse] = useState<string>("");
   const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleCaptchaVerify = (token: string | null) => {
     setIsCaptchaVerified(true);
@@ -106,18 +108,29 @@ export default function Login() {
             <label htmlFor="psw">
               <b>Password</b>
             </label>
-            <input
-              type="password"
+            <Input
+              type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
               name="psw"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              suffix={
+                showPassword ? (
+                  <EyeInvisibleOutlined
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{ cursor: "pointer" }}
+                  />
+                ) : (
+                  <EyeOutlined
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{ cursor: "pointer" }}
+                  />
+                )
+              }
             />
             <Col className="b">
-              <Link href="/forgotpassword">
-                forgot password
-              </Link>
+              <Link href="/forgotpassword">forgot password</Link>
             </Col>
             <div className="cc">
               <ReCAPTCHA

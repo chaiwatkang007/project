@@ -1,6 +1,7 @@
 import fs from "fs"
 import dotenv from "dotenv"
 
+
 const env = process.env.NODE_ENV
 const envFile: string = `.env.${env}`
 
