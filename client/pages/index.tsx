@@ -7,9 +7,9 @@ export default function Home() {
       <title>Automatic</title>
       <div className="content">
         <h1>
-          Automatic
+        Personal Automatic
           <br />
-          Personal Dispense Assistant
+          Medication Dispense Assistant
         </h1>
 
         <Row className="hh">
