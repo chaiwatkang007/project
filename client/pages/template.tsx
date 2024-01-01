@@ -10,13 +10,13 @@ import Link from "next/link";
 const { Meta } = Card;
 
 interface LogEntry {
-  day : string;
+  day: string;
   time: string;
   event_happening: string;
 }
 
 function Admin() {
-  const [usernamelogin, setUsernamelogin] = useState('');
+  const [usernamelogin, setUsernamelogin] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("2023-09-03"); // Default date
   const [selectedTime, setSelectedTime] = useState("00:00"); // Default time
@@ -34,7 +34,7 @@ function Admin() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = datalog.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers:number[] = [];
+  const pageNumbers: number[] = [];
   for (let i = 1; i <= Math.ceil(datalog.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -125,10 +125,9 @@ function Admin() {
   };
 
   useEffect(() => {
-
-    if (typeof window !== 'undefined') {
-      const storedUsername = localStorage.getItem('usernamelogin');
-      if(storedUsername) {
+    if (typeof window !== "undefined") {
+      const storedUsername = localStorage.getItem("usernamelogin");
+      if (storedUsername) {
         setUsernamelogin(storedUsername);
       }
     }
@@ -198,7 +197,6 @@ function Admin() {
         const namethree = data.result.rows[1].username;
         const namefour = data.result.rows[3].username;
         console.log(countuser);
-
 
         setUser(countuser);
       } catch (error) {
@@ -516,7 +514,7 @@ function Admin() {
                     cover={
                       <img
                         alt="example"
-                        src="https://scontent.fbkk13-3.fna.fbcdn.net/v/t1.6435-9/124710523_1465572543647601_920919380793570628_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=174925&_nc_ohc=uSqQEN2jDpYAX_GfoXp&_nc_ht=scontent.fbkk13-3.fna&oh=00_AfC9fqD-PX5NXBZph_WsXoXj3PT4x3yZwApAokvRtNHeEQ&oe=6543607F"
+                        src="https://scontent.fbkk29-5.fna.fbcdn.net/v/t39.30808-6/323320300_831499997912863_7842745807329510235_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=NDAM-6xKM_IAX896lis&_nc_ht=scontent.fbkk29-5.fna&oh=00_AfB-YfrdKyl4r7flG5-YodiPVb7OR1-YgKew4XI6vg4w7g&oe=657C1C87"
                       />
                     }
                   >
@@ -528,7 +526,7 @@ function Admin() {
                     cover={
                       <img
                         alt="example"
-                        src="https://scontent.fbkk12-4.fna.fbcdn.net/v/t39.30808-6/337012394_233257582512653_7465760359736163477_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Knmag1WTd2wAX-yHnh3&_nc_ht=scontent.fbkk12-4.fna&oh=00_AfBY8djt-lRWweG9nQLJvPeEJmpe3X6X95lAA_3FNSVe3A&oe=65326D37"
+                        src="https://scontent.fbkk29-6.fna.fbcdn.net/v/t39.30808-1/337012394_233257582512653_7465760359736163477_n.jpg?stp=dst-jpg_s200x200&_nc_cat=103&ccb=1-7&_nc_sid=5740b7&_nc_ohc=GRPmJWru5igAX_HISVe&_nc_ht=scontent.fbkk29-6.fna&oh=00_AfDoXe1OqwL4do3-ilLF9Ahx0bSIR7bUuZGtv6R52YZZxg&oe=657B0C71"
                       />
                     }
                   >
@@ -540,7 +538,7 @@ function Admin() {
                     cover={
                       <img
                         alt="example"
-                        src="https://scontent.fbkk13-3.fna.fbcdn.net/v/t39.30808-6/371034662_1974338542924136_330610339788569331_n.jpg?stp=cp6_dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeH8F7YGK7GEVYpvj4bXsUc-Z6T_Eqk7KidnpP8SqTsqJ2J5016RpDM5GyR2Jm2WpY1bYrJDkmTX_mfTdoAhMPm7&_nc_ohc=QjbmvtzAQLoAX8XVP76&_nc_ht=scontent.fbkk13-3.fna&oh=00_AfCp2B-hDI1DYFv-nfyVims47Z_N1OsWjNe7cQ8SdkP7Cw&oe=65320FCB"
+                        src="https://scontent.fbkk29-4.fna.fbcdn.net/v/t39.30808-1/371034662_1974338542924136_330610339788569331_n.jpg?stp=cp6_dst-jpg_p200x200&_nc_cat=110&ccb=1-7&_nc_sid=5740b7&_nc_ohc=zGO-P_3vXH8AX_SkcMQ&_nc_ht=scontent.fbkk29-4.fna&oh=00_AfBLe05PYqvUEdKMGzTOoixxT1GkHuwoCDR3dLfaqbXiHg&oe=657BAD8D"
                       />
                     }
                   >
@@ -550,10 +548,10 @@ function Admin() {
                     hoverable
                     style={{ width: 300 }}
                     cover={
-                        <img
-                          src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/362951835_2042172992795649_5082259832039992477_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=gQ89jgl_HC0AX_KPrvg&_nc_ht=scontent.fbkk12-1.fna&oh=00_AfBTHtXVh5mZkmdNQtbwJGkJXmmEJN4GPxh7pVYz72qbdA&oe=6541F371"
-                          alt="example"
-                        />
+                      <img
+                        src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t39.30808-1/362951835_2042172992795649_5082259832039992477_n.jpg?stp=dst-jpg_p200x200&_nc_cat=101&ccb=1-7&_nc_sid=5740b7&_nc_ohc=iY0O9QS_FrMAX-0Ro-a&_nc_ht=scontent.fbkk29-1.fna&oh=00_AfAJrMA_EaExLbD4nobmtZtgCqh2iAXUtq8eY3Lsjcksdw&oe=657BA333"
+                        alt="example"
+                      />
                     }
                   >
                     <Meta title="BENCHAPORN PHANMI" description="CLOUD" />
@@ -630,7 +628,7 @@ function Admin() {
                         <th>Event</th>
                       </tr>
                     </thead>
-                    {currentItems.map((logEntry:LogEntry, index) => (
+                    {currentItems.map((logEntry: LogEntry, index) => (
                       <tr key={index}>
                         <td>{logEntry.day}</td>
                         <td>{logEntry.time}</td>

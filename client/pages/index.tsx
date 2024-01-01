@@ -4,21 +4,18 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="bbg">
-      <title>Automatic</title>
+      <title>SMART PILL</title>
       <div className="content">
         <h1>
-        Personal Automatic
+          SMART PILL DISPENSER
           <br />
-          Medication Dispense Assistant
         </h1>
-
         <Row className="hh">
           <div className="dd">
             <Button>
               <Link href="/login">SIGN IN</Link>
             </Button>
           </div>
-
           <div className="ee">
             <Button>
               <Link href="/register">SIGN UP</Link>
